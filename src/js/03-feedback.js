@@ -38,9 +38,18 @@ loadDataFromLocalStorage();
 // Обробка сабміту форми
 feedbackForm.addEventListener("submit", (event) => {
   event.preventDefault();
+  const emailValue = emailInput.value.trim();
+  const messageValue = messageTextarea.value.trim();
+  
+  // Перевірка, чи заповнено обидва поля перед відправленням
+  if (emailValue === "" || messageValue === "") {
+    alert("Будь ласка, заповніть всі поля форми.");
+    return; // Не відправляємо дані, якщо не всі поля заповнені
+  }
+  
   const formData = {
-    email: emailInput.value,
-    message: messageTextarea.value,
+    email: emailValue,
+    message: messageValue,
   };
   console.log(formData);
   localStorage.removeItem(LOCAL_STORAGE_KEY); // Очищення локального сховища
